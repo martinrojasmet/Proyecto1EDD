@@ -41,8 +41,32 @@ public class AdjacencyMatrix {
             }
     }
     
-    public void eliminarVertice(int n){
+    public void eliminarVertice(int x){
         /** Elimina un vértice del grafo **/
+        if (x > numVertex) {
+            System.out.println("Vertice supera el numero de nodos maximos!");         
+        }
+        else {
+            int i;
+ 
+        // Se elimina el vertice
+        while (x < numVertex) {
+ 
+            // cambiando las filas a la izquierda
+            for (i = 0; i < numVertex; ++i) {
+                matrixAdy[i][x] = matrixAdy[i][x + 1];
+            }
+ 
+            // cambiando las columnas hacia arriba
+            for (i = 0; i < numVertex; ++i) {
+                matrixAdy[x][i] = matrixAdy[x + 1][i];
+            }
+            x++;
+            }
+ 
+        // disminuyendo el numero de vertices
+        numVertex = numVertex - 1;
+        }
     }
     
     public int gradoIn(int j) {
