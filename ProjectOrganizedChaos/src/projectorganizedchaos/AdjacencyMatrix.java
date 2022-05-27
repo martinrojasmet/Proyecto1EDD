@@ -1,47 +1,41 @@
 
 package projectorganizedchaos;
-import java.io.IOException;
 
 public class AdjacencyMatrix {
     private boolean directed; // Indica si es dirigido o no.
-    private int maxNodes; // Tamaño máximo de la tabla.
     private int numVertex; // Número de vértices del grafo.
-    private boolean matrixAdy [ ] [ ]; // Matriz de adyacencias del grafo.
+    private boolean matrixAdj [ ] [ ]; // Matriz de adyacencias del grafo.
     
-    public void GraphMA (int n, boolean d) {
-        directed = d;
-        maxNodes = n;
-        numVertex = 0;
-        matrixAdy = new boolean[n][n]; //dudassss aquiiiiiiiii
+    public void AdjacencyMatrix (int n, boolean d) {
+        this.directed = d;
+        this.numVertex = 0;
+        this.matrixAdj = new boolean[n][n]; //dudassss aquiiiiiiiii
     }
     
-    public void insertarArista (int i, int j) {
-        matrixAdy [i] [j] = true;
+    public void addLink (int i, int j) {
+        matrixAdj [i] [j] = true;
         if (!directed)
-        matrixAdy [j] [i] = matrixAdy [i] [j];
+        matrixAdj [j] [i] = matrixAdj [i] [j];
     }
     
-    public void eliminarArista (int i, int j) {
-        matrixAdy [i] [j] = false;
+    public void deleteLink (int i, int j) {
+        matrixAdj [i] [j] = false;
         if (!directed)
-        matrixAdy [j] [i] = false;
+        matrixAdj [j] [i] = false;
 }
     
-    public void insertarVertice(int n){
+    public void addVertex (int n){
         /** Inserta un vértice en el grafo siempre que no se supere el número máximo
         de nodos permitidos **/
-        if ( n > maxNodes - numVertex )
-            System.out.println ("Error, se supera el número de nodos máximo");
-            else {
-                for (int i=0; i < numVertex + n; i++) {
-                    for (int j = numVertex; j < numVertex + n; j++)
-                        matrixAdy [i] [j] = matrixAdy [j] [i] = false;
-            }
-            numVertex = numVertex + n;
-            }
+
+        for (int i=0; i < numVertex + n; i++) {
+            for (int j = numVertex; j < numVertex + n; j++)
+                matrixAdj [i] [j] = matrixAdj [j] [i] = false;
+        }
+    numVertex = numVertex + n;
     }
     
-    public void eliminarVertice(int x){
+    public void deleteVertex (int x){
         /** Elimina un vértice del grafo **/
         if (x > numVertex) {
             System.out.println("Vertice supera el numero de nodos maximos!");         
@@ -54,12 +48,12 @@ public class AdjacencyMatrix {
  
             // cambiando las filas a la izquierda
             for (i = 0; i < numVertex; ++i) {
-                matrixAdy[i][x] = matrixAdy[i][x + 1];
+                matrixAdj[i][x] = matrixAdj[i][x + 1];
             }
  
             // cambiando las columnas hacia arriba
             for (i = 0; i < numVertex; ++i) {
-                matrixAdy[x][i] = matrixAdy[x + 1][i];
+                matrixAdj[x][i] = matrixAdj[x + 1][i];
             }
             x++;
             }
@@ -69,53 +63,53 @@ public class AdjacencyMatrix {
         }
     }
     
-    public int gradoIn(int j) {
+    public int gradeIn(int j) {
         int gIn = 0;
         for (int i = 0; i < numVertex; i++) //recorrido por filas
-            if (matrixAdy [i] [j])
+            if (matrixAdj [i] [j])
         gIn++; //manteniendo la posición de la columna en [j]
         return gIn;
     }
     
-    public int gradoOut(int i) {
+    public int gradeOut(int i) {
         int gOut = 0;
         for (int j= 0; j < numVertex; j++)
-            if (matrixAdy [i][j])
+            if (matrixAdj [i][j])
         gOut++; // manteniendo la posición de la fila en [i]
         return gOut;
     }
     
-    public int incidencia (int i) {
+    public int getIncidence (int i) {
     if (!directed)
-        return gradoIn (i);
-    else return gradoIn (i) + gradoOut (i);
+        return gradeIn (i);
+    else return gradeIn (i) + gradeOut (i);
     }
     
-    public int tamano() {
+    public int getSize () {
     int tm = 0;
     for (int i = 0; i < numVertex; i++)
         for (int j=0; j < numVertex; j++)
-            if (matrixAdy [i] [j])
+            if (matrixAdj [i] [j])
                 tm++;
     if (directed)
         return tm;
     else return tm/2;
     }
     
-    public boolean esDirigido () { //aqui tambien hay algo raro
+    public boolean isDirected () { //aqui tambien hay algo raro
         boolean dir = true;
         for (int i = 0; i < numVertex; i++)
             for (int j = 0; j < numVertex; j++)
-                if (matrixAdy [i] [j] != matrixAdy [j] [i])
+                if (matrixAdj [i] [j] != matrixAdj [j] [i])
                 dir = false;
         return dir;
     }
     
-    public void imprimirTabla () {
+    public void printTable () {
     System.out.println ("La matriz contiene " + numVertex + " vértices: \n");
     for (int i = 0; i < numVertex; i++) {
         for (int j = 0; j < numVertex; j++) {
-            if (matrixAdy [i] [j])
+            if (matrixAdj [i] [j])
                 System.out.print ("1 ");
             else System.out.print ("0 ");
             }
