@@ -39,9 +39,9 @@ public class Objects {
     
     public class Warehouse() {
         String name;
-        Product[] listOfProducts;
+        List listOfProducts;
 
-        public Warehouse(String name, Product[] listOfProducts) {
+        public Warehouse(String name, List listOfProducts) {
             this.name = name;
             this.listOfProducts = listOfProducts;
         }
@@ -54,11 +54,11 @@ public class Objects {
             this.name = name;
         }
 
-        public Product[] getListOfProducts() {
+        public List getListOfProducts() {
             return listOfProducts;
         }
 
-        public void setListOfProducts(Product[] listOfProducts) {
+        public void setListOfProducts(List listOfProducts) {
             this.listOfProducts = listOfProducts;
         }
         
