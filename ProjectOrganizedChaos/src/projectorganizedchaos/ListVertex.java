@@ -8,11 +8,11 @@ package projectorganizedchaos;
  *
  * @author marti
  */
-public class List {
-    private Node head;
+public class ListVertex {
+    private NodeVertex head;
     private int length;
 
-    public List(Node head) {
+    public ListVertex(NodeVertex head) {
         this.head = head;
         if (head != null) {
             this.length = 1;
@@ -21,11 +21,11 @@ public class List {
         }       
     }
 
-    public void setHead(Node head) {
+    public void setHead(NodeVertex head) {
         this.head = head;
     }
 
-    public Node getHead() {
+    public NodeVertex getHead() {
         return head;
     }
 
@@ -33,8 +33,8 @@ public class List {
         return length;
     }
     
-    public void insertStart(Object element){
-        Node node = new Node(element);
+    public void insertStart(Vertex element){
+        NodeVertex node = new NodeVertex(element);
         if (isEmpty()) {
             setHead(node);
         } else {
@@ -44,12 +44,12 @@ public class List {
         length++;
     }
     
-    public void insertEnd(Object element) {
-        Node node = new Node(element);
+    public void insertEnd(Vertex element) {
+        NodeVertex node = new NodeVertex(element);
         if (isEmpty()) {
             setHead(node);
         } else {
-            Node pointer = getHead();
+            NodeVertex pointer = getHead();
             while (pointer.getNext() != null) {
                pointer = pointer.getNext();
             }
@@ -63,7 +63,7 @@ public class List {
     }
     
     public void printList() {
-        Node pointer = getHead();
+        NodeVertex pointer = getHead();
         if (isEmpty()) {
             System.out.println("La lista esta vacia");} else {
         while (pointer.getNext() != null) {
@@ -75,7 +75,7 @@ public class List {
     }
     
     public void deleteFirst() {
-        Node pointer = getHead();
+        NodeVertex pointer = getHead();
         if (!isEmpty()) {
             setHead(pointer.getNext());
             pointer.setNext(null);
@@ -84,7 +84,7 @@ public class List {
     }
     
     public void deleteLast() {
-        Node pointer = getHead();
+        NodeVertex pointer = getHead();
         if (!isEmpty()) {
             while (pointer.getNext().getNext() != null) {
                 pointer = pointer.getNext();

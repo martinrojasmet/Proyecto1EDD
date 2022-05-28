@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class Functions {
     
-    public void readText() {
+    public String readText() {
         String line;
         String Text = "";
         String path = "test\\amazon.txt";
@@ -33,48 +33,108 @@ public class Functions {
                 }
                 br.close();
             }
-            if (!"".equals(Text)) {
-                String[] TextLineSplit = Text.split("\n");
-                int index = 0;
-                int indexWarehouse = index + 1;
-                
-                while (TextLineSplit[index] != "Rutas;" && index < TextLineSplit.length) {
-                    index++;
-                }
-                
-                int indexRoute = index;
-                String[] WarehouseStringList = new String[index-2];
-                
-                for (int i = 1; i < index; i++) {
-                    String result = TextLineSplit[i];
-                    WarehouseStringList[i-1] = result;
-                }
-                
-                int index2 = 1;
-                
-                while (index2 < WarehouseStringList.length) {
-                    boolean isWarehouse = WarehouseStringList[index2].startsWith("Almacen");
-                    if (isWarehouse) {
-                        char WarehouseLetter = WarehouseStringList[index2].charAt(8);
-                        index2 += 1;
-                        while (!WarehouseStringList[index2].substring(WarehouseStringList[index2].length() -1).equals(";")) {
-                            String[] ProductList = WarehouseStringList[index2].split(",");
-                            String ProductName = ProductList[0];
-                            String ProductQuantity = ProductList[1];
-                            index2++;
-                        }
-                    WarehouseStringList[index2] = WarehouseStringList[index2].replace(";","");
-                    String[] ProductList = WarehouseStringList[index2].split(",");
-                    String ProductName = ProductList[0];
-                    String ProductQuantity = ProductList[1];
-                    index2++;
-                    }
-                }
-        }
-            
-           JOptionPane.showMessageDialog(null, "Lectura exitosa");
         } catch (Exception ex){
-            JOptionPane.showMessageDialog(null, "Error al leer");
+            return "";
         } 
+        return Text;
+    }
+    
+    public void createObjects (String Text) {
+        
+        if (!"".equals(Text)) {
+            
+            String[] TextLineSplit = Text.split("\n");
+            
+            
+            int index = 0;
+            while (!TextLineSplit[index].equals("Rutas;") && index < TextLineSplit.length) {
+                index++;
+            }
+            int indexRoute = index;
+            
+            
+            String[] WarehouseStringList = new String[indexRoute-1];
+            for (int i = 1; i < indexRoute; i++) {
+                String result = TextLineSplit[i];
+                WarehouseStringList[i-1] = result;
+            }
+            
+            index = 0;
+            String[] VertexStringList = new String[Text.length()-indexRoute+1];
+            for (int i = indexRoute+1; i < Text.length(); i++) {
+                String result = TextLineSplit[i];
+                VertexStringList[index] = result;
+                index++;
+            }
+            
+            index = 0;
+            List warehouseList = new List(null);
+            while (index < WarehouseStringList.length) {
+                boolean isWarehouse = WarehouseStringList[index].startsWith("Almacen");
+                if (isWarehouse) {
+                    char WarehouseLetter = WarehouseStringList[index].charAt(8);
+                    index++;
+                    List listProducts = new List(null);
+                    
+                    while (!WarehouseStringList[index].substring(WarehouseStringList[index].length()-1).equals(";")) {
+                        String[] ProductArray = WarehouseStringList[index].split(",");
+                        String ProductName = ProductArray[0];
+                        String ProductQuantity = ProductArray[1];
+                        Product product = new Product(ProductName, Integer.parseInt(ProductQuantity));
+                        listProducts.insertEnd(product);
+                        index++;
+                    }
+                    
+                    WarehouseStringList[index] = WarehouseStringList[index].replace(";","");
+                    String[] ProductArray = WarehouseStringList[index].split(",");
+                    String ProductName = ProductArray[0];
+                    String ProductQuantity = ProductArray[1];
+                    Product product = new Product(ProductName, Integer.parseInt(ProductQuantity));
+                    listProducts.insertEnd(product);
+                    
+                    Warehouse wa = new Warehouse(WarehouseLetter, listProducts);
+                    warehouseList.insertEnd(wa);
+                } 
+                
+            }
+            
+            index = indexRoute+1;
+            ListVertex vertexList = new ListVertex(null);
+            NodeVertex vertexInList = null;
+            while (index < VertexStringList.length) {
+                String[] VertexArray = VertexStringList[index].split(",");
+                String vertexName = VertexArray[0];
+                String link = VertexArray[1];
+                String size = VertexArray[2];
+                
+                boolean vertexExists = false;
+                NodeVertex pointer = vertexList.getHead();
+                while (pointer.getNext() != null) {
+                    if (pointer.getElement().name.equals(vertexName)) {
+                        vertexExists = true;
+                        vertexInList = pointer;
+                    }
+                }          
+                
+                Vertex vertex = new Vertex(vertexName);
+                String[] linkArray = new String[2];
+                linkArray[0] = link;
+                linkArray[1] = size;
+                
+                if (vertexExists) {
+                    pointer = vertexList.getHead();
+                    while (pointer.getNext() != null && pointer != vertexInList) {
+                        pointer = pointer.getNext();
+                }
+                pointer.getElement().links.insertEnd(linkArray);
+                } else {
+                    vertex.links.insertEnd(linkArray);
+                    vertexList.insertEnd(vertex);
+                }
+                
+            }
+            
+        }
+        
     }
 }
