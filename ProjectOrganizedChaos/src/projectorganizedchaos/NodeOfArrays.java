@@ -8,11 +8,11 @@ package projectorganizedchaos;
  *
  * @author marti
  */
-public class Node {
-    private Object element;
-    private Node next;
+public class NodeOfArrays {
+    private String[] element;
+    private NodeOfArrays next;
 
-    public Node(Object element) {
+    public NodeOfArrays(String[] element) {
         this.next = null;
         this.element = element;
     }
@@ -20,28 +20,28 @@ public class Node {
     /**
      * @return the element
      */
-    public Object getElement() {
+    public String[] getElement() {
         return element;
     }
 
     /**
      * @param element the element to set
      */
-    public void setElement(Object element) {
+    public void setElement(String[] element) {
         this.element = element;
     }
 
     /**
      * @return the next
      */
-    public Node getNext() {
+    public NodeOfArrays getNext() {
         return next;
     }
 
     /**
      * @param next the next to set
      */
-    public void setNext(Node next) {
+    public void setNext(NodeOfArrays next) {
         this.next = next;
     } 
 }

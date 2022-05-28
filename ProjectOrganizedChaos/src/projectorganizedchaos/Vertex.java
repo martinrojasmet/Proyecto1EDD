@@ -8,16 +8,14 @@ package projectorganizedchaos;
  *
  * @author marti
  */
-public class Warehouse {
- Warehouse(char name, List listOfProducts) {
+public class Vertex {
     String name;
-    List listOfProducts;
+    ListOfArrays links;
 
-    public Warehouse(String name, List listOfProducts) {
+    public Vertex(String name) {
         this.name = name;
-        this.listOfProducts = listOfProducts;
+        this.links = new ListOfArrays(null);
     }
-
 
     public String getName() {
         return name;
@@ -27,13 +25,12 @@ public class Warehouse {
         this.name = name;
     }
 
-    public List getListOfProducts() {
-        return listOfProducts;
+    public ListOfArrays getLinks() {
+        return links;
     }
 
-    public void setListOfProducts(List listOfProducts) {
-        this.listOfProducts = listOfProducts;
+    public void setLinks(ListOfArrays links) {
+        this.links = links;
     }
-
+    
 }
-
