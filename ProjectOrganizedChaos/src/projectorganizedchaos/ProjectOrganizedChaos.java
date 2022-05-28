@@ -1,20 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package projectorganizedchaos;
 
-/**
- *
- * @author marti
- */
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import javax.swing.JOptionPane;
+
+
 public class ProjectOrganizedChaos {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+//        SimpleListWithArray list = readTextFile();
+//        list.printList();
+
+        
     }
     
 }
