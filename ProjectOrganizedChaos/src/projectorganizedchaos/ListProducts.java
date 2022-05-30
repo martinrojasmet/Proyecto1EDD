@@ -8,11 +8,11 @@ package projectorganizedchaos;
  *
  * @author marti
  */
-public class ListWarehouse {
-        private NodeWarehouse head;
+public class ListProducts {
+    private NodeProduct head;
     private int length;
 
-    public ListWarehouse (NodeWarehouse head) {
+    public ListProducts (NodeProduct head) {
         this.head = head;
         if (head != null) {
             this.length = 1;
@@ -21,11 +21,11 @@ public class ListWarehouse {
         }       
     }
 
-    public void setHead(NodeWarehouse head) {
+    public void setHead(NodeProduct head) {
         this.head = head;
     }
 
-    public NodeWarehouse getHead() {
+    public NodeProduct getHead() {
         return head;
     }
 
@@ -33,8 +33,8 @@ public class ListWarehouse {
         return length;
     }
     
-    public void insertStart(Warehouse element){
-        NodeWarehouse node = new NodeWarehouse(element);
+    public void insertStart(Product element){
+        NodeProduct node = new NodeProduct(element);
         if (isEmpty()) {
             setHead(node);
         } else {
@@ -44,12 +44,12 @@ public class ListWarehouse {
         length++;
     }
     
-    public void insertEnd(Warehouse element) {
-        NodeWarehouse node = new NodeWarehouse(element);
+    public void insertEnd(Product element) {
+        NodeProduct node = new NodeProduct(element);
         if (isEmpty()) {
             setHead(node);
         } else {
-            NodeWarehouse pointer = getHead();
+            NodeProduct pointer = getHead();
             while (pointer.getNext() != null) {
                pointer = pointer.getNext();
             }
@@ -63,7 +63,7 @@ public class ListWarehouse {
     }
     
     public void printList() {
-        NodeWarehouse pointer = getHead();
+        NodeProduct pointer = getHead();
         if (isEmpty()) {
             System.out.println("La lista esta vacia");} else {
         while (pointer.getNext() != null) {
@@ -75,7 +75,7 @@ public class ListWarehouse {
     }
     
     public void deleteFirst() {
-        NodeWarehouse pointer = getHead();
+        NodeProduct pointer = getHead();
         if (!isEmpty()) {
             setHead(pointer.getNext());
             pointer.setNext(null);
@@ -84,7 +84,7 @@ public class ListWarehouse {
     }
     
     public void deleteLast() {
-        NodeWarehouse pointer = getHead();
+        NodeProduct pointer = getHead();
         if (!isEmpty()) {
             while (pointer.getNext().getNext() != null) {
                 pointer = pointer.getNext();
@@ -93,4 +93,5 @@ public class ListWarehouse {
         }
     length--;
     }
+    
 }

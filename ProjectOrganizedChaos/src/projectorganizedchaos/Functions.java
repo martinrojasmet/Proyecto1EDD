@@ -79,8 +79,7 @@ public class Functions {
                     String WarehouseLetter = String.valueOf(WarehouseStringList[index].charAt(8));
                     index++;
                     
-                    List listProducts = new List(null);
-                    
+                    ListProducts listProducts = new ListProducts(null);
                     
                     while (!WarehouseStringList[index].substring(WarehouseStringList[index].length()-1).equals(";")) {
                         String[] ProductArray = WarehouseStringList[index].split(",");
@@ -88,21 +87,24 @@ public class Functions {
                         String ProductQuantity = ProductArray[1];
                         Product product = new Product(ProductName, Integer.parseInt(ProductQuantity));
                         listProducts.insertEnd(product);
+                        System.out.println(ProductName);
+                        System.out.println(ProductQuantity);
                         index++;
                     }
-              
-                    
+  
                     WarehouseStringList[index] = WarehouseStringList[index].replace(";","");
                     String[] ProductArray = WarehouseStringList[index].split(",");
                     String ProductName = ProductArray[0];
                     String ProductQuantity = ProductArray[1];
-                    Product product = new Product(ProductName, Integer.parseInt(ProductQuantity));
-                    listProducts.insertEnd(product);
+                    Product product1 = new Product(ProductName, Integer.parseInt(ProductQuantity));
+                    listProducts.insertEnd(product1);
+                                            System.out.println(ProductName);
+                        System.out.println(ProductQuantity);
                     
                     Warehouse wa = new Warehouse(WarehouseLetter, listProducts);
                     warehouseList.insertEnd(wa);
                 }
-              index++;  
+            index++;  
             }
             
             index = 0;

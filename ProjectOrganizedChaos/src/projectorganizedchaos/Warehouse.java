@@ -9,11 +9,11 @@ package projectorganizedchaos;
  * @author marti
  */
 public class Warehouse {
-    List listOfProducts;
+    ListProducts listOfProducts;
     ListOfArrays links;
     String name;
 
-    public Warehouse(String name, List listOfProducts) {
+    public Warehouse(String name, ListProducts listOfProducts) {
         this.name = name;
         this.listOfProducts = listOfProducts;
         this.links = new ListOfArrays(null);
@@ -27,11 +27,11 @@ public class Warehouse {
         this.name = name;
     }
 
-    public List getListOfProducts() {
+    public ListProducts getListOfProducts() {
         return listOfProducts;
     }
 
-    public void setListOfProducts(List listOfProducts) {
+    public void setListOfProducts(ListProducts listOfProducts) {
         this.listOfProducts = listOfProducts;
     }
 

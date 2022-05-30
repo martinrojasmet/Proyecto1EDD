@@ -1,12 +1,6 @@
 
 package projectorganizedchaos;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import javax.swing.JOptionPane;
-
 
 public class ProjectOrganizedChaos {
 
@@ -19,8 +13,16 @@ public class ProjectOrganizedChaos {
         ListWarehouse list = eew.createObjects(w);
         NodeWarehouse pointer = list.getHead();
         while (pointer.getNext() != null) {
-            String a = pointer.getElement().name;
-            System.out.println(a);
+            ListProducts a = pointer.getElement().listOfProducts;
+            System.out.println(a.getLength());
+            NodeProduct pointer1 = a.getHead();
+            System.out.println(pointer.getElement().name);
+            while (pointer1.getNext() != null) {
+                System.out.println("hola");
+                System.out.println(pointer1.getElement().name);
+                pointer1 = pointer1.getNext();
+            }
+            System.out.println("");
             pointer = pointer.getNext();
         }
 
