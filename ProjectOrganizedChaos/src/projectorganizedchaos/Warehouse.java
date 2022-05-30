@@ -9,16 +9,32 @@ package projectorganizedchaos;
  * @author marti
  */
 public class Warehouse {
+<<<<<<< Updated upstream
  Warehouse(char name, List listOfProducts) {
+=======
+<<<<<<< HEAD
+=======
+ Warehouse(char name, List listOfProducts) {
+>>>>>>> 6a8056a43eb99216c3581886d5d6823e860aaa78
+>>>>>>> Stashed changes
     String name;
     List listOfProducts;
+    ListOfArrays links;
 
     public Warehouse(String name, List listOfProducts) {
         this.name = name;
         this.listOfProducts = listOfProducts;
+        this.links = new ListOfArrays(null);
     }
 
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6a8056a43eb99216c3581886d5d6823e860aaa78
+>>>>>>> Stashed changes
     public String getName() {
         return name;
     }
@@ -33,6 +49,14 @@ public class Warehouse {
 
     public void setListOfProducts(List listOfProducts) {
         this.listOfProducts = listOfProducts;
+    }
+
+    public ListOfArrays getLinks() {
+        return links;
+    }
+
+    public void setLinks(ListOfArrays links) {
+        this.links = links;
     }
 
 }
