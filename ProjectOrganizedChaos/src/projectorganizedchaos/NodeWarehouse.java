@@ -8,11 +8,11 @@ package projectorganizedchaos;
  *
  * @author marti
  */
-public class NodeVertex {
-    private String[] element;
-    private NodeVertex next;
+public class NodeWarehouse {
+    private Warehouse element;
+    private NodeWarehouse next;
 
-    public NodeVertex(String[] element) {
+    public NodeWarehouse(Warehouse element) {
         this.next = null;
         this.element = element;
     }
@@ -20,28 +20,28 @@ public class NodeVertex {
     /**
      * @return the element
      */
-    public String[] getElement() {
+    public Warehouse getElement() {
         return element;
     }
 
     /**
      * @param element the element to set
      */
-    public void setElement(String[] element) {
+    public void setElement(Warehouse element) {
         this.element = element;
     }
 
     /**
      * @return the next
      */
-    public NodeVertex getNext() {
+    public NodeWarehouse getNext() {
         return next;
     }
 
     /**
      * @param next the next to set
      */
-    public void setNext(NodeVertex next) {
+    public void setNext(NodeWarehouse next) {
         this.next = next;
     } 
 }

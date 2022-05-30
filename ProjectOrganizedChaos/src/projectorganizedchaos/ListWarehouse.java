@@ -8,11 +8,11 @@ package projectorganizedchaos;
  *
  * @author marti
  */
-public class ListVertex {
-    private NodeVertex head;
+public class ListWarehouse {
+    private NodeWarehouse head;
     private int length;
 
-    public ListVertex(NodeVertex head) {
+    public ListWarehouse(NodeWarehouse head) {
         this.head = head;
         if (head != null) {
             this.length = 1;
@@ -21,11 +21,11 @@ public class ListVertex {
         }       
     }
 
-    public void setHead(NodeVertex head) {
+    public void setHead(NodeWarehouse head) {
         this.head = head;
     }
 
-    public NodeVertex getHead() {
+    public NodeWarehouse getHead() {
         return head;
     }
 
@@ -33,8 +33,8 @@ public class ListVertex {
         return length;
     }
     
-    public void insertStart(Vertex element){
-        NodeVertex node = new NodeVertex(element);
+    public void insertStart(Warehouse element){
+        NodeWarehouse node = new NodeWarehouse(element);
         if (isEmpty()) {
             setHead(node);
         } else {
@@ -44,12 +44,12 @@ public class ListVertex {
         length++;
     }
     
-    public void insertEnd(Vertex element) {
-        NodeVertex node = new NodeVertex(element);
+    public void insertEnd(Warehouse element) {
+        NodeWarehouse node = new NodeWarehouse(element);
         if (isEmpty()) {
             setHead(node);
         } else {
-            NodeVertex pointer = getHead();
+            NodeWarehouse pointer = getHead();
             while (pointer.getNext() != null) {
                pointer = pointer.getNext();
             }
@@ -63,7 +63,7 @@ public class ListVertex {
     }
     
     public void printList() {
-        NodeVertex pointer = getHead();
+        NodeWarehouse pointer = getHead();
         if (isEmpty()) {
             System.out.println("La lista esta vacia");} else {
         while (pointer.getNext() != null) {
@@ -75,7 +75,7 @@ public class ListVertex {
     }
     
     public void deleteFirst() {
-        NodeVertex pointer = getHead();
+        NodeWarehouse pointer = getHead();
         if (!isEmpty()) {
             setHead(pointer.getNext());
             pointer.setNext(null);
@@ -84,7 +84,7 @@ public class ListVertex {
     }
     
     public void deleteLast() {
-        NodeVertex pointer = getHead();
+        NodeWarehouse pointer = getHead();
         if (!isEmpty()) {
             while (pointer.getNext().getNext() != null) {
                 pointer = pointer.getNext();

@@ -9,15 +9,15 @@ package projectorganizedchaos;
  * @author marti
  */
 public class Warehouse {
- Warehouse(char name, List listOfProducts) {
-    String name;
     List listOfProducts;
+    ListOfArrays links;
+    String name;
 
     public Warehouse(String name, List listOfProducts) {
         this.name = name;
         this.listOfProducts = listOfProducts;
+        this.links = new ListOfArrays(null);
     }
-
 
     public String getName() {
         return name;
@@ -33,6 +33,14 @@ public class Warehouse {
 
     public void setListOfProducts(List listOfProducts) {
         this.listOfProducts = listOfProducts;
+    }
+
+    public ListOfArrays getLinks() {
+        return links;
+    }
+
+    public void setLinks(ListOfArrays links) {
+        this.links = links;
     }
 
 }
