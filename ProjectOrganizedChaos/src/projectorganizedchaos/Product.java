@@ -32,12 +32,4 @@ public class Product {
     public void setQuantitiy(int quantitiy) {
         this.quantitiy = quantitiy;
     }
-<<<<<<< Updated upstream
-
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> 6a8056a43eb99216c3581886d5d6823e860aaa78
->>>>>>> Stashed changes
 }
