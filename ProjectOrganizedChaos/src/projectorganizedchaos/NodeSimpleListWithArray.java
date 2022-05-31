@@ -8,40 +8,41 @@ package projectorganizedchaos;
  *
  * @author marti
  */
-public class Node {
-    private Object element;
-    private Node next;
+public class NodeSimpleListWithArray<T> {
+    private T data;
+    private int next;
 
-    public Node(Object element) {
-        this.next = null;
-        this.element = element;
+    public NodeSimpleListWithArray(T data) {
+        this.data = data;
+        this.next = -1;
     }
 
     /**
-     * @return the element
+     * @return the data
      */
-    public Object getElement() {
-        return element;
+    public T getData() {
+        return data;
     }
 
     /**
-     * @param element the element to set
+     * @param data the data to set
      */
-    public void setElement(Object element) {
-        this.element = element;
+    public void setData(T data) {
+        this.data = data;
     }
 
     /**
      * @return the next
      */
-    public Node getNext() {
+    public int getNext() {
         return next;
     }
 
     /**
      * @param next the next to set
      */
-    public void setNext(Node next) {
+    public void setNext(int next) {
         this.next = next;
-    } 
+    }
+    
 }
