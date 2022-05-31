@@ -9,14 +9,22 @@ package projectorganizedchaos;
  * @author marti
  */
 public class Warehouse {
+<<<<<<< Updated upstream
     List listOfProducts;
     ListOfArrays links;
     String name;
+=======
+    String name;
+    List listOfProducts;
+>>>>>>> Stashed changes
 
     public Warehouse(String name, List listOfProducts) {
         this.name = name;
         this.listOfProducts = listOfProducts;
+<<<<<<< Updated upstream
         this.links = new ListOfArrays(null);
+=======
+>>>>>>> Stashed changes
     }
 
     public String getName() {
@@ -35,6 +43,7 @@ public class Warehouse {
         this.listOfProducts = listOfProducts;
     }
 
+<<<<<<< Updated upstream
     public ListOfArrays getLinks() {
         return links;
     }
@@ -43,5 +52,7 @@ public class Warehouse {
         this.links = links;
     }
 
+=======
+>>>>>>> Stashed changes
 }
 
