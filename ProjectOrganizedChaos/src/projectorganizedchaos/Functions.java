@@ -101,6 +101,13 @@ public class Functions {
                                             System.out.println(ProductName);
                         System.out.println(ProductQuantity);
                     
+                        
+                    NodeProduct node = listProducts.getHead();
+                    while (node.getNext() != null) {
+                        System.out.println(node.getElement().name);
+                        node = node.getNext();
+                    }
+                    
                     Warehouse wa = new Warehouse(WarehouseLetter, listProducts);
                     warehouseList.insertEnd(wa);
                 }
