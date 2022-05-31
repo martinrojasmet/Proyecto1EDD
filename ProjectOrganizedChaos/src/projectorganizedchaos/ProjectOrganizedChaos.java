@@ -14,17 +14,7 @@ public class ProjectOrganizedChaos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-<<<<<<< Updated upstream
-        Functions eew = new Functions();
-        String w = eew.readText();
-        ListWarehouse list = eew.createObjects(w);
-        NodeWarehouse pointer = list.getHead();
-        while (pointer.getNext() != null) {
-            String a = pointer.getElement().name;
-            System.out.println(a);
-            pointer = pointer.getNext();
-        }
-=======
+
 //        SimpleListWithArray list = readTextFile();
 //        list.printList();
           AdjacencyMatrix graph = new AdjacencyMatrix(6);
@@ -44,7 +34,7 @@ public class ProjectOrganizedChaos {
 
             
             graph.dijkStra(0);
->>>>>>> Stashed changes
+
 
     }
     
