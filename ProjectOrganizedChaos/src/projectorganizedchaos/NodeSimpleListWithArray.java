@@ -8,11 +8,11 @@ package projectorganizedchaos;
  *
  * @author marti
  */
-public class NodeSimpleListWithArray<T> {
-    private T data;
+public class NodeSimpleListWithArray {
+    private String data;
     private int next;
 
-    public NodeSimpleListWithArray(T data) {
+    public NodeSimpleListWithArray(String data) {
         this.data = data;
         this.next = -1;
     }
@@ -20,14 +20,14 @@ public class NodeSimpleListWithArray<T> {
     /**
      * @return the data
      */
-    public T getData() {
+    public String getData() {
         return data;
     }
 
     /**
      * @param data the data to set
      */
-    public void setData(T data) {
+    public void setData(String data) {
         this.data = data;
     }
 

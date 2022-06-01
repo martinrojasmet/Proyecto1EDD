@@ -6,14 +6,14 @@ public class AdjacencyMatrix {
     private int numberOfEdges;
     private double[] distance;
     private String[] path;
-    private SimpleListWithArray<String> Vertax;
+    private SimpleListWithArray Vertax;
     private static int[][] edges;
     private boolean[] isVisited;
     
     public AdjacencyMatrix(int n){
         this.n = n;
         numberOfEdges=0;
-        Vertax = new SimpleListWithArray<>(n);
+        Vertax = new SimpleListWithArray(n);
         edges  = new int[n][n];
         isVisited = new boolean[n+1];
         distance = new double[n];
@@ -29,12 +29,11 @@ public class AdjacencyMatrix {
     }
 
     // Obtener el número de vértices
-    public  int GetSizeOfGraph(SimpleListWithArray<String> Vertax){
+    public int GetSizeOfGraph(SimpleListWithArray Vertax){
         return Vertax.getLength();
     }
     // Agregar vértice
-    public  void addVertax(int x){
-        
+    public void addVertax(String x){ 
         Vertax.addAtTheEnd(x);
     }
     // Obtiene el primer vértice adyacente del vértice especificado

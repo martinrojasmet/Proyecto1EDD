@@ -8,7 +8,7 @@ package projectorganizedchaos;
  *
  * @author marti
  */
-public class SimpleListWithArray<T> {
+public class SimpleListWithArray {
     private int first;
     private int last;
     private int size;
@@ -50,10 +50,10 @@ public class SimpleListWithArray<T> {
         this.array = new NodeSimpleListWithArray[this.array.length];
     }
     
-    public int getValue(int x){
-        int p = 0;
+    public String getValue(int x){
+        String p = null;
         if (this.isEmpty()){
-            return -1;
+            return null;
         }
         if (x > this.array.length){
             System.out.println("El indice es mayor que la longitud de la lista");
@@ -61,7 +61,7 @@ public class SimpleListWithArray<T> {
         else{
         for (int i = 0; i < this.array.length; i++) {
             if(i == x){
-                p = (Integer) this.array[i].getData();
+                p = (String) this.array[i].getData();
             }  
         }
         return p;
@@ -78,7 +78,7 @@ public class SimpleListWithArray<T> {
         return -1;
     }
     
-    public void addAtTheStart(int x) {
+    public void addAtTheStart(String x) {
         if (!this.isFull()) {
             NodeSimpleListWithArray node = new NodeSimpleListWithArray(x);
             int position = this.searchEmptySlot();
@@ -93,7 +93,7 @@ public class SimpleListWithArray<T> {
         }
     }
     
-    public void addAtTheEnd(int x) {
+    public void addAtTheEnd(String x) {
         if (!this.isFull()) {
             NodeSimpleListWithArray node = new NodeSimpleListWithArray(x);
             int position = this.searchEmptySlot();
@@ -108,39 +108,6 @@ public class SimpleListWithArray<T> {
         }
     }
     
-    public void insertOrdered(int x) {
-        if (!this.isFull()) {
-            if (this.isEmpty()) {
-                addAtTheStart(x);
-            } else if (String.valueOf(x).compareToIgnoreCase(String.valueOf(this.array[this.first].getData())) <= 0) {
-                addAtTheStart(x);
-            } else if (String.valueOf(x).compareToIgnoreCase(String.valueOf(this.array[this.last].getData())) >= 0) {
-                addAtTheEnd(x);
-            } else {
-                int previous = this.first;
-                int current = this.array[this.first].getNext();
-                while (String.valueOf(x).compareToIgnoreCase(String.valueOf(this.array[current].getData())) > 0) {
-                    previous = current;
-                    current = this.array[current].getNext();
-                }
-                NodeSimpleListWithArray node = new NodeSimpleListWithArray(x);
-                int position = this.searchEmptySlot();
-                this.array[position] = node;
-                this.array[previous].setNext(position);
-                this.array[position].setNext(current);
-            }
-        }
-    }
-    
-    public void printList() {
-        String list = "";
-        int position = this.first;
-        while(position != -1) {
-            list += this.array[position].getData() + "->";
-            position = this.array[position].getNext();
-        }
-        System.out.println(list + "//");
-    }
     
     public int getLength(){
         return size;

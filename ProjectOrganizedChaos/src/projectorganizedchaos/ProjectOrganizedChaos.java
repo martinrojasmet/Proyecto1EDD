@@ -17,20 +17,22 @@ public class ProjectOrganizedChaos {
 
 //        SimpleListWithArray list = readTextFile();
 //        list.printList();
-          AdjacencyMatrix graph = new AdjacencyMatrix(6);
-            graph.addVertax(1);
-            graph.addVertax(2);
-            graph.addVertax(3);
-            graph.addVertax(4);
-            graph.addVertax(5);
+          AdjacencyMatrix graph = new AdjacencyMatrix(100);
+            graph.addVertax("A");
+            graph.addVertax("B");
+            graph.addVertax("C");
+            graph.addVertax("D");
+            graph.addVertax("E");
 
 
             graph.addEdges(0,1,10);
-            graph.addEdges(0,2,2);
-            graph.addEdges(2,1,1);
-            graph.addEdges(2,4,7);
-            graph.addEdges(1,4,1);
-            graph.addEdges(4,3,3);
+            graph.addEdges(0,2,20);
+            graph.addEdges(1,2,5);
+            graph.addEdges(1,3,8);
+            graph.addEdges(2,3,4);
+            graph.addEdges(2,4,13);
+            graph.addEdges(3,4,3);
+            graph.addEdges(4,0,25);
 
             
             graph.dijkStra(0);
