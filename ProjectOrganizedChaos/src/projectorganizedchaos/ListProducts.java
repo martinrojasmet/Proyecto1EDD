@@ -4,6 +4,8 @@
  */
 package projectorganizedchaos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author marti
@@ -54,24 +56,28 @@ public class ListProducts {
                pointer = pointer.getNext();
             }
         pointer.setNext(node);
-        length++;
         }
+        length++;
         }
         
     public boolean isEmpty() {
         return getHead() == null;
     }
     
-    public void printList() {
+        public String printList() {
         NodeProduct pointer = getHead();
+        String result = "";
         if (isEmpty()) {
-            System.out.println("La lista esta vacia");} else {
-        while (pointer.getNext() != null) {
-            System.out.println(pointer.getElement());
+            JOptionPane.showMessageDialog(null,"La lista esta vacia");
+            return result;
+        } else {
+        while (pointer != null) {
+            result += pointer.getElement().name + ", " + pointer.getElement().quantitiy + "\n";
             pointer = pointer.getNext();
         }
-        System.out.println(pointer.getElement());
+        result += "\n";
         }
+        return result;
     }
     
     public void deleteFirst() {
@@ -94,4 +100,26 @@ public class ListProducts {
     length--;
     }
     
+    public void AddProduct (NodeProduct pointerResult) {
+        NodeProduct pointer = getHead();
+        boolean isInList = false;
+        while (pointer != null) {
+            if (pointer.getElement().getName().equals(pointerResult.getElement().getName())) {
+                isInList = true;
+            }
+            pointer = pointer.getNext();
+        }
+        pointer = getHead();
+        if (isInList) {
+            while (pointer != null) {
+                if (pointer.getElement().getName().equals(pointerResult.getElement().getName())) {
+                   pointer.getElement().setQuantitiy(pointer.getElement().getQuantitiy() + pointerResult.getElement().getQuantitiy());
+            }
+                pointer = pointer.getNext();
+        }
+        } else {
+            insertEnd(pointerResult.getElement());
+        }
+    
+}
 }

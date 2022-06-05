@@ -9,7 +9,7 @@ package projectorganizedchaos;
  * @author marti
  */
 public class ListWarehouse {
-        private NodeWarehouse head;
+    private NodeWarehouse head;
     private int length;
 
     public ListWarehouse (NodeWarehouse head) {
@@ -18,7 +18,7 @@ public class ListWarehouse {
             this.length = 1;
         } else {
             this.length = 0;
-        }       
+        }
     }
 
     public void setHead(NodeWarehouse head) {
@@ -54,8 +54,8 @@ public class ListWarehouse {
                pointer = pointer.getNext();
             }
         pointer.setNext(node);
-        length++;
         }
+        length++;
         }
         
     public boolean isEmpty() {
@@ -92,5 +92,31 @@ public class ListWarehouse {
         pointer.setNext(null);
         }
     length--;
+    }
+    
+    public void createProductList () {
+        NodeWarehouse pointer = getHead();
+        while (pointer != null) {
+            ListProducts list = pointer.getElement().listOfProducts;
+            NodeProduct pointerPro = list.getHead();
+            while (pointerPro != null) {
+                pointerPro = pointerPro.getNext();
+            }
+        }
+    }
+    
+    public ListProducts getListOfProducts() {
+        ListProducts TotalListProducts = new ListProducts(null);
+        NodeWarehouse pointer = getHead();
+        while (pointer != null) {
+            ListProducts listProducts = pointer.getElement().getListOfProducts();
+            NodeProduct pointerPro = listProducts.getHead();
+            while (pointerPro != null) {
+                TotalListProducts.AddProduct(pointerPro);
+                pointerPro = pointerPro.getNext();
+            }
+            pointer = pointer.getNext();
+        }
+        return TotalListProducts;
     }
 }

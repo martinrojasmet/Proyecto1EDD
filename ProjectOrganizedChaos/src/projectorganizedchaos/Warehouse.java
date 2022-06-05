@@ -42,6 +42,19 @@ public class Warehouse {
     public void setLinks(ListOfArrays links) {
         this.links = links;
     }
+    
+    public void addProduct(String name, String quantity) {
+        int quantityInt = Integer.parseInt(quantity);
+        Product pro = new Product(name, quantityInt);
+        getListOfProducts().insertEnd(pro);
+    }
+    
+    public void addLink(String warehouseLetter, String size) {
+        String[] result = new String[2];
+        result[0] = warehouseLetter;
+        result[1] = size;
+        getLinks().insertEnd(result);
+    }
 
 }
 

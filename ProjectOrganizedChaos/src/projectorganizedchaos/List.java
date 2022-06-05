@@ -54,8 +54,8 @@ public class List {
                pointer = pointer.getNext();
             }
         pointer.setNext(node);
-        length++;
         }
+        length++;
         }
         
     public boolean isEmpty() {

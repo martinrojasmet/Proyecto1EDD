@@ -7,6 +7,7 @@ package projectorganizedchaos;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,8 +46,7 @@ public class Functions {
         if (!"".equals(Text)) {
             
             String[] TextLineSplit = Text.split("\n");
-            
-            
+
             int index = 0;
             while (!TextLineSplit[index].equals("Rutas;") && index < TextLineSplit.length) {
                 index++;
@@ -60,10 +60,9 @@ public class Functions {
                 WarehouseStringList[index] = result;
                 index++;
             }
-            
-            
-            int lengthVertexArray = TextLineSplit.length - (indexRoute+1);
+             
             index = 0;
+            int lengthVertexArray = TextLineSplit.length - (indexRoute+1);
             String[] VertexStringList = new String[(lengthVertexArray)];
             for (int i = indexRoute+1; i < TextLineSplit.length; i++) {
                 String result = TextLineSplit[i];
@@ -87,8 +86,6 @@ public class Functions {
                         String ProductQuantity = ProductArray[1];
                         Product product = new Product(ProductName, Integer.parseInt(ProductQuantity));
                         listProducts.insertEnd(product);
-                        System.out.println(ProductName);
-                        System.out.println(ProductQuantity);
                         index++;
                     }
   
@@ -98,13 +95,11 @@ public class Functions {
                     String ProductQuantity = ProductArray[1];
                     Product product1 = new Product(ProductName, Integer.parseInt(ProductQuantity));
                     listProducts.insertEnd(product1);
-                                            System.out.println(ProductName);
-                        System.out.println(ProductQuantity);
                     
                     Warehouse wa = new Warehouse(WarehouseLetter, listProducts);
                     warehouseList.insertEnd(wa);
-                }
-            index++;  
+                    index++;
+                } 
             }
             
             index = 0;
@@ -131,4 +126,78 @@ public class Functions {
           return null;
         }
         
+    public void writeText(ListWarehouse listWarehouse) {
+        String amazonText = "Almacenes;\n";
+        if (!listWarehouse.isEmpty()) {
+            NodeWarehouse tempWarehouse = listWarehouse.getHead();
+            for (int i = 0; i < listWarehouse.getLength(); i++) {
+                amazonText += "Almacen " + tempWarehouse.getElement().getName() + ":\n";
+                
+                NodeProduct tempProduct = tempWarehouse.getElement().getListOfProducts().getHead();
+                for (int j = 0; j < tempWarehouse.getElement().getListOfProducts().getLength(); j++) {
+                    amazonText += tempProduct.getElement().getName() + "," + tempProduct.getElement().getQuantitiy();
+                    tempProduct = tempProduct.getNext();
+                    if (j == tempWarehouse.getElement().getListOfProducts().getLength() -1) {
+                        amazonText += ";\n";
+                    } else {
+                        amazonText += "\n";
+                    }
+                }
+                tempWarehouse = tempWarehouse.getNext();
+            }
+            
+            amazonText += "Rutas;\n";
+            
+            tempWarehouse = listWarehouse.getHead();
+            for (int i = 0; i < listWarehouse.getLength(); i++) {
+                NodeOfArrays tempArray = tempWarehouse.getElement().getLinks().getHead();
+                for (int j = 0; j < tempWarehouse.getElement().getLinks().getLength(); j++) {
+                    amazonText += tempWarehouse.getElement().getName() + "," + tempArray.getElement()[0] + "," + tempArray.getElement()[1] + "\n";
+                tempArray = tempArray.getNext();
+                }
+                tempWarehouse = tempWarehouse.getNext();
+            }
+            
+        }
+        try {
+            PrintWriter pw = new PrintWriter("test\\clients.txt");
+            pw.print(amazonText);
+            pw.close();
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, err);
+        }
     }
+    
+    public void addWarehouse (ListWarehouse listWarehouse, String name) {
+        NodeWarehouse pointer = listWarehouse.getHead();
+        boolean letterIsIn = false;
+        while (pointer != null) {
+            if (!pointer.getElement().name.equals(name)) {
+                letterIsIn = true;
+            }
+        }
+        
+        boolean keepGoing = true;
+        while (keepGoing) {
+            if (!letterIsIn) {
+                ListProducts lo = new ListProducts(null);
+                Warehouse wa = new Warehouse(name, lo);
+                String warehouseLetter1 = "r";
+                String size1 = "r";
+                wa.addLink(warehouseLetter1, size1);
+                String warehouseLetter2 = "r";
+                String size2 = "r";
+                wa.addLink(warehouseLetter1, size1);
+                wa.addLink(warehouseLetter2, size2);
+                listWarehouse.insertEnd(wa);
+                keepGoing = false;
+            } else {
+                System.out.println("El almacen "+ name + "ya existe. Intente de nuevo.");
+            }
+        }
+        
+    }
+    
+    }
+    
+
