@@ -8,7 +8,11 @@ package projectorganizedchaos;
  *
  * @author marti
  */
+<<<<<<< Updated upstream
 public class SimpleListWithArray<T> {
+=======
+public class SimpleListWithArray {
+>>>>>>> Stashed changes
     private int first;
     private int last;
     private int size;
@@ -50,10 +54,17 @@ public class SimpleListWithArray<T> {
         this.array = new NodeSimpleListWithArray[this.array.length];
     }
     
+<<<<<<< Updated upstream
     public int getValue(int x){
         int p = 0;
         if (this.isEmpty()){
             return -1;
+=======
+    public String getValue(int x){
+        String p = null;
+        if (this.isEmpty()){
+            return null;
+>>>>>>> Stashed changes
         }
         if (x > this.array.length){
             System.out.println("El indice es mayor que la longitud de la lista");
@@ -61,7 +72,11 @@ public class SimpleListWithArray<T> {
         else{
         for (int i = 0; i < this.array.length; i++) {
             if(i == x){
+<<<<<<< Updated upstream
                 p = (Integer) this.array[i].getData();
+=======
+                p = (String) this.array[i].getData();
+>>>>>>> Stashed changes
             }  
         }
         return p;
@@ -69,6 +84,18 @@ public class SimpleListWithArray<T> {
     return p;
     }
     
+<<<<<<< Updated upstream
+=======
+    public int getIndex(String x){
+        for (int i = 0; i < this.getLength(); i++) {
+            if (x.equals(this.array[i].getData())){
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+>>>>>>> Stashed changes
     public int searchEmptySlot() {
         for (int i = 0; i < this.array.length; i++) {
             if (this.array[i] == null) {
@@ -78,7 +105,11 @@ public class SimpleListWithArray<T> {
         return -1;
     }
     
+<<<<<<< Updated upstream
     public void addAtTheStart(int x) {
+=======
+    public void addAtTheStart(String x) {
+>>>>>>> Stashed changes
         if (!this.isFull()) {
             NodeSimpleListWithArray node = new NodeSimpleListWithArray(x);
             int position = this.searchEmptySlot();
@@ -93,7 +124,11 @@ public class SimpleListWithArray<T> {
         }
     }
     
+<<<<<<< Updated upstream
     public void addAtTheEnd(int x) {
+=======
+    public void addAtTheEnd(String x) {
+>>>>>>> Stashed changes
         if (!this.isFull()) {
             NodeSimpleListWithArray node = new NodeSimpleListWithArray(x);
             int position = this.searchEmptySlot();
@@ -108,6 +143,7 @@ public class SimpleListWithArray<T> {
         }
     }
     
+<<<<<<< Updated upstream
     public void insertOrdered(int x) {
         if (!this.isFull()) {
             if (this.isEmpty()) {
@@ -141,6 +177,8 @@ public class SimpleListWithArray<T> {
         }
         System.out.println(list + "//");
     }
+=======
+>>>>>>> Stashed changes
     
     public int getLength(){
         return size;
