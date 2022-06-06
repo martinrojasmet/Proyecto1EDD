@@ -7,11 +7,12 @@ package projectorganizedchaos;
 
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.view.Viewer;
 
 public class Graphmaker {
     
     
-    public Graph graphmaker(){
+    public static void graphmaker(){
         System.setProperty("org.graphstream.ui", "swing");
 	
 
@@ -38,14 +39,38 @@ public class Graphmaker {
                 end = pointer2.getElement()[0];
                 weight = pointer2.getElement()[1];
                 
-                graph.addEdge(start + end, start , end).setAttribute("lenght", weight);
+                graph.addEdge(start + end, start , end).setAttribute("weight", weight);
                 
                 pointer2 = pointer2.getNext();
             }
         pointer = pointer.getNext();
         }
         
-        return graph;           
+        displayGraph(graph);           
  }
-}
+    
+    public static void displayGraph (Graph g){
+        System.setProperty("org.graphstream.ui", "swing");
+                g.nodes().forEach(n -> n.setAttribute("label", n.getId()));
+                g.edges().forEach(e -> e.setAttribute("label", "" + (int) e.getNumber("weigth")));                
+                for (org.graphstream.graph.Node node: g)
+                    node.setAttribute("ui.label", node.getId());
+                for (org.graphstream.graph.Node node: g)
+                    node.setAttribute("ui.style", "fill-color: white");
+                for (org.graphstream.graph.Node node: g)
+                    node.setAttribute("ui.style", "text-alignment: under");
+                for (org.graphstream.graph.Node node: g)
+                    node.setAttribute("ui.style", "text-style: bold");
+                for (org.graphstream.graph.Node edge: g)
+                    edge.setAttribute("ui.style", "fill-color: white");
+                g.setAttribute("ui.quality",4);
+            g.display();
+   
+        }
+    }
+
+
+
+
+
 
